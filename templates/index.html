@@ -3,8 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="/static/login.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+          crossorigin="anonymous">
 </head>
 <body>
-    HELLO
+     <nav class="navbar navbar-expand-lg navbar-light margin-spaces navbar-style">
+                    <a class="navbar-brand" href="#">Home</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                      <ul class="navbar-nav">
+                        <li class="nav-item navbar-style-item">
+                          <a class="nav-link active" aria-current="page" href="#">Orders</a>
+                        </li>
+                        <li class="nav-item navbar-style-item">
+                          <a class="nav-link" href="#">Booking</a>
+                        </li>
+                        <li class="nav-item navbar-style-item">
+                          <a class="nav-link" href="#">Checkin</a>
+                        </li>
+                        <li class="nav-item navbar-style-item">
+                          <a class="nav-link navbar-style-item" href="#">Reporting</a>
+                        </li>
+                      </ul>
+                    </div>
+                      <div class="main-avatar d-flex align-items-center justify-content-center">
+                      <img src="https://images.pexels.com/photos/8836497/pexels-photo-8836497.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="avatar">
+                  </div>
+                </nav>
+        <div class="container">
+        <div class="row">
+            <div class="col-5">
+                <h1 class="margin-spaces">Hello, Dr. Lee</h1>
+                <h5 class="margin-spaces">Patient Queue</h5>
+                <div class="patient-info">
+                    <ul class="list-group">
+                      <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Andrew Martin
+                        <span class="badge bg-primary rounded-pill">5 minutes</span>
+                      </li>
+                      <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Garry Griffith
+                        <span class="badge bg-primary rounded-pill">12 minutes</span>
+                      </li>
+                      <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Hester Booth
+                        <span class="badge bg-primary rounded-pill">17 minutes</span>
+                      </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-7">
+                <h1 class="margin-spaces" style="text-align: center">Timetable</h1>
+                <table class="table table-hover table-bordered timetable">
+                  <thead>
+                    <tr>
+                      <th scope="col">Day</th>
+                      <th scope="col">Mon</th>
+                      <th scope="col">Tue</th>
+                      <th scope="col">Wed</th>
+                      <th scope="col">Thur</th>
+                      <th scope="col">Fri</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">9 A.M.</th>
+                      <td id="mon9a"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">10 A.M.</th>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">11 A.M.</th>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">12 P.M.</th>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  <tr>
+                      <th scope="row">13 P.M.</th>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  <tr>
+                      <th scope="row">14 P.M.</th>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  <tr>
+                      <th scope="row">15 P.M.</th>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  <tr>
+                      <th scope="row">16 P.M.</th>
+                      <td ></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+            integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script>
+        function setTime() {
+            let startTime = new Date('2021-08-30T16:00:00');
+            let name = "Darren Yu"
+            if (startTime.getHours() < 9 && startTime.getHours() >= 17) return
+            let row = startTime.getHours() - 8; // 11 - 8 = 3
+            let col = startTime.getDay() - 1;
+            if (col === -1 && col === 5) return;
+            $(".timetable tr:eq(" + row + ") td:eq(" + col + ")").append('<div class="booking-person margin-spaces-persons">21</div>')
+            $(".timetable tr:eq(" + row + ") td:eq(" + col + ")").append('<div class="booking-person margin-spaces-persons">22</div>')
+            $(".timetable tr:eq(" + row + ") td:eq(" + col + ")").append('<div class="booking-person margin-spaces-persons">23</div>')
+            $(".timetable tr:eq(" + row + ") td:eq(" + col + ")").append('<div class="booking-person margin-spaces-persons">24</div>')
+            $(".timetable tr:eq(" + row + ") td:eq(" + col + ")").append('<div class="booking-person margin-spaces-persons">25</div>')
+
+        }
+        setTime();
+    </script>
 </body>
 </html>

@@ -57,7 +57,7 @@ body {
   border-radius: 5px;
   padding: 20px;
 }
-input[type=order] {
+input[type=submit] {
   width: 25%;
   background-color: blue;
   color: white;

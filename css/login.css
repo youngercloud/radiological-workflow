@@ -66,5 +66,9 @@ input[type=submit] {
   border: none;
   border-radius: 4px;
 }
+label {
+  padding: 20px 20px 20px 20px;
+  display: inline-block;
+}
 
 /*# sourceMappingURL=login.css.map */

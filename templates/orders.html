@@ -35,107 +35,38 @@
                   </div>
                 </nav>
         <div class="container">
-        <div class="row">
-            <div class="col-5">
-                <h1 class="margin-spaces">Hello, Dr. Lee</h1>
-                <h5 class="margin-spaces">Patient Queue</h5>
-                <div class="patient-info">
-                    <ul class="list-group">
-                      <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Andrew Martin
-                        <span class="badge bg-primary rounded-pill">5 minutes</span>
-                      </li>
-                      <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Garry Griffith
-                        <span class="badge bg-primary rounded-pill">12 minutes</span>
-                      </li>
-                      <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Hester Booth
-                        <span class="badge bg-primary rounded-pill">17 minutes</span>
-                      </li>
-                    </ul>
-                </div>
-            </div>
+        <div class="collapse navbar-collapse" id="navbarNav">
+                      <ul class="navbar-nav">
+                        <li class="nav-item navbar-style-item">
+                          <a class="nav-link active" aria-current="page" href="#">Workflow</a>
+                        </li>
+                        <li class="nav-item navbar-style-item">
+                          <a class="nav-link" href="#">Practioner</a>
+                        </li>
+                        <li class="nav-item navbar-style-item">
+                          <a class="nav-link" href="#">CPatient</a>
+                        </li>
+                        <li class="nav-item navbar-style-item">
+                          <a class="nav-link navbar-style-item" href="#">Encounter</a>
+                        </li>
+                      </ul>
+                    </div>
+            
             <div class="col-7">
-                <h1 class="margin-spaces" style="text-align: center">Timetable</h1>
-                <table class="table table-hover table-bordered timetable">
-                  <thead>
-                    <tr>
-                      <th scope="col">Day</th>
-                      <th scope="col">Mon</th>
-                      <th scope="col">Tue</th>
-                      <th scope="col">Wed</th>
-                      <th scope="col">Thur</th>
-                      <th scope="col">Fri</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">9 A.M.</th>
-                      <td id="mon9a"></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <th scope="row">10 A.M.</th>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <th scope="row">11 A.M.</th>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <th scope="row">12 P.M.</th>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                  <tr>
-                      <th scope="row">13 P.M.</th>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                  <tr>
-                      <th scope="row">14 P.M.</th>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                  <tr>
-                      <th scope="row">15 P.M.</th>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                  <tr>
-                      <th scope="row">16 P.M.</th>
-                      <td ></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                  </tbody>
-                </table>
+                <h1 class="margin-spaces" style="text-align: center">Order a rediology workflow</h1>
+                <form>
+                    <label for="fname">Workflow:</label><br>
+                    <input type="text" id="workflow" name="workflow"><br>
+                    <label for="lname">Practioner:</label><br>
+                    <input type="text" id="practioner" name="practioner">  
+                    <label for="fname">Patient:</label><br>
+                    <input type="text" id="patient" name="patient"><br>
+                    <label for="lname">Encounter:</label><br>
+                    <input type="text" id="encounter" name="encounter">
+                    <label for="lname">Comment:</label><br>
+                    <input type="text" id="comment" name="comment">
+                    <input type="order" value="Order">
+                </form>
             </div>
         </div>
     </div>

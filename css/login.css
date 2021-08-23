@@ -53,4 +53,18 @@ body {
   background: #aaa;
   border-radius: 5%;
 }
+.form {
+  border-radius: 5px;
+  padding: 20px;
+}
+input[type=order] {
+  width: 25%;
+  background-color: blue;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+}
+
 /*# sourceMappingURL=login.css.map */

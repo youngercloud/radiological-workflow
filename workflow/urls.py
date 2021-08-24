@@ -19,5 +19,6 @@ import radiological.views as app_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/', app_views.index)
+    path('home/', app_views.index),
+    path('order/', app_views.order)
 ]

@@ -10,17 +10,17 @@
 </head>
 <body>
      <nav class="navbar navbar-expand-lg navbar-light margin-spaces navbar-style">
-                    <a class="navbar-brand" href="#">Home</a>
+                    <a class="navbar-brand" href="/home/">Home</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                       <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                       <ul class="navbar-nav">
                         <li class="nav-item navbar-style-item">
-                          <a class="nav-link active" aria-current="page" href="#">Orders</a>
+                          <a class="nav-link active" aria-current="page" href="/order/">Orders</a>
                         </li>
                         <li class="nav-item navbar-style-item">
-                          <a class="nav-link" href="#">Booking</a>
+                          <a class="nav-link" href="/booking/">Booking</a>
                         </li>
                         <li class="nav-item navbar-style-item">
                           <a class="nav-link" href="#">Checkin</a>
@@ -151,12 +151,13 @@
             if (startTime.getHours() < 9 && startTime.getHours() >= 17) return
             let row = startTime.getHours() - 8; // 11 - 8 = 3
             let col = startTime.getDay() - 1;
+
             if (col === -1 && col === 5) return;
-            $(".timetable tr:eq(" + row + ") td:eq(" + col + ")").append('<div class="booking-person margin-spaces-persons">21</div>')
-            $(".timetable tr:eq(" + row + ") td:eq(" + col + ")").append('<div class="booking-person margin-spaces-persons">22</div>')
-            $(".timetable tr:eq(" + row + ") td:eq(" + col + ")").append('<div class="booking-person margin-spaces-persons">23</div>')
-            $(".timetable tr:eq(" + row + ") td:eq(" + col + ")").append('<div class="booking-person margin-spaces-persons">24</div>')
-            $(".timetable tr:eq(" + row + ") td:eq(" + col + ")").append('<div class="booking-person margin-spaces-persons">25</div>')
+            $(".table-style tr:eq(" + row + ") td:eq(" + col + ")").append('<div class="booking-person margin-spaces-persons">21</div>')
+            $(".table-style tr:eq(" + row + ") td:eq(" + col + ")").append('<div class="booking-person margin-spaces-persons">22</div>')
+            $(".table-style tr:eq(" + row + ") td:eq(" + col + ")").append('<div class="booking-person margin-spaces-persons">23</div>')
+            $(".table-style tr:eq(" + row + ") td:eq(" + col + ")").append('<div class="booking-person margin-spaces-persons">24</div>')
+            $(".table-style tr:eq(" + row + ") td:eq(" + col + ")").append('<div class="booking-person margin-spaces-persons">25</div>')
 
         }
         setTime();

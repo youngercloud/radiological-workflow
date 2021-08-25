@@ -18,7 +18,8 @@ from django.urls import path
 import radiological.views as app_views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('', app_views.index),
+    path('/', app_views.index),
     path('home/', app_views.index),
     path('order/', app_views.order),
     path('booking/', app_views.booking)

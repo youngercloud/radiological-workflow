@@ -56,4 +56,10 @@ body {
   background: #aaa;
   border-radius: 5%;
 }
-/*# sourceMappingURL=login.css.map */
+.table tbody:hover {
+  cursor: pointer;
+}
+.table tbody tr.highlight td {
+  background-color: #ddd;
+}
+/*# sourceMappingURL=booking.css.map */

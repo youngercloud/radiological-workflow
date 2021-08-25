@@ -9,3 +9,7 @@ def index(request):
 
 def order(request):
     return render(request, 'orders.html')
+
+
+def booking(request):
+    return render(request, 'booking.html')

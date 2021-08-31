@@ -13,3 +13,5 @@ def order(request):
 
 def booking(request):
     return render(request, 'booking.html')
+
+

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/checkIn.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+          crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light margin-spaces navbar-style">
+    <a class="navbar-brand" href="/home/">Home</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item navbar-style-item">
+                <a class="nav-link active" aria-current="page" href="/order/">Orders</a>
+            </li>
+            <li class="nav-item navbar-style-item">
+                <a class="nav-link" href="/booking/">Booking</a>
+            </li>
+            <li class="nav-item navbar-style-item">
+                <a class="nav-link" href="/checkin/">Checkin</a>
+            </li>
+            <li class="nav-item navbar-style-item">
+                <a class="nav-link navbar-style-item" href="/report/">Reporting</a>
+            </li>
+        </ul>
+    </div>
+    <div class="main-avatar d-flex align-items-center justify-content-center">
+        <img src="https://images.pexels.com/photos/8836497/pexels-photo-8836497.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+             alt="avatar">
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-5">
+            <h5 class="margin-spaces">Patient Queue</h5>
+            <div class="patient-info">
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Andrew Martin
+                        <div>
+                             <span class="badge bg-primary rounded-pill" style="margin-right: 10px">5 minutes</span>
+                            <button class="btn btn-primary btn-sm">Check In</button>
+                        </div>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Garry Griffith
+                        <div>
+                             <span class="badge bg-primary rounded-pill" style="margin-right: 10px">5 minutes</span>
+                            <button class="btn btn-primary btn-sm">Check In</button>
+                        </div>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Hester Booth
+                        <div>
+                             <span class="badge bg-primary rounded-pill" style="margin-right: 10px">5 minutes</span>
+                            <button class="btn btn-primary btn-sm">Check In</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-5">
+            <form>
+                <fieldset disabled>
+                    <div class="mb-3">
+                        <label for="TaskID" class="form-label">Task ID</label>
+                        <input type="text" id="taskId-disable" class="form-control" placeholder="Disabled input">
+                    </div>
+                    <div class="mb-3">
+                        <label for="patient" class="form-label">Patient Name</label>
+                        <input type="text" id="patient-name" class="form-control" placeholder="Disabled input">
+                    </div>
+                    <div class="mb-3">
+                        <label for="patient" class="form-label">Workflow</label>
+                        <input type="text" id="workflow-name" class="form-control" placeholder="Disabled input">
+                    </div>
+                    <div class="mb-3">
+                        <label for="practitioner" class="form-label">Practitioner</label>
+                        <input type="text" id="practitioner-name" class="form-control" placeholder="Disabled input">
+                    </div>
+                    <div class="mb-3">
+                        <label for="date" class="form-label">Date</label>
+                        <input type="date" id="start" class="form-control" name="booking-date">
+                    </div>
+                    <div class="mb-3">
+                        <label for="start-time" class="form-label">Time</label>
+                        <input type="time" id="start" class="form-control" name="booking-date" min="09:00" max="18:00">
+                    </div>
+                     <div class="mb-3">
+                        <label for="device" class="form-label">Time</label>
+                        <input type="time" id="start" class="form-control" name="booking-date" min="09:00" max="18:00">
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+</body>
+</html>

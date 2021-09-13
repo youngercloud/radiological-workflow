@@ -24,10 +24,10 @@
                 <a class="nav-link" href="/booking/">Booking</a>
             </li>
             <li class="nav-item navbar-style-item">
-                <a class="nav-link" href="#">Checkin</a>
+                <a class="nav-link" href="/checkin/">Checkin</a>
             </li>
             <li class="nav-item navbar-style-item">
-                <a class="nav-link navbar-style-item" href="#">Reporting</a>
+                <a class="nav-link navbar-style-item" href="/report/">Reporting</a>
             </li>
         </ul>
     </div>
@@ -38,12 +38,12 @@
 </nav>
 
 <div class="container">
-    <div class="row ">
+    <div class="row">
         <div class="col-3 order-left-bg">
             <div style="margin-top: 50px" class="list-group" id="list-tab" role="tablist">
-                <a class="order-list-item active" id="home" data-bs-toggle="list" href="#home-page">Home</a>
+                <a class="order-list-item active" id="home" data-bs-toggle="list" href="#home-page">Overview</a>
                 <a class="order-list-item active" id="workflow" data-bs-toggle="list" href="#workflow-page">Workflow</a>
-                <a class="order-list-item" id="practitioner" data-bs-toggle="list" href="#practioner-page">Practitioner</a>
+                <a class="order-list-item" id="practitioner" data-bs-toggle="list" href="#practitioner-page">Practitioner</a>
                 <a class="order-list-item" id="patient" data-bs-toggle="list" href="#patient-page">Patient</a>
             </div>
         </div>
@@ -51,91 +51,263 @@
             <h1 style="text-align: center;">Order Workflow</h1>
             <div class="form">
                 <form>
-                  <div class="mb-3">
-                    <label for="workflow" class="form-label">Workflow</label>
-                    <input type="text" class="form-control" id="fname">
-                  </div>
-                  <div class="mb-3">
-                      <label for="practitioner" class="form-label">Practitioner</label>
-                    <input type="text" class="form-control" id="lname">
-                  </div>
+                    <fieldset disabled>
+                        <div class="mb-3">
+                            <label for="workflow" class="form-label">Workflow</label>
+                            <input type="text" class="form-control" id="wk-name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="practitioner" class="form-label">Practitioner</label>
+                            <input type="text" class="form-control" id="par-name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="patient" class="form-label">Patient</label>
+                            <input type="text" class="form-control" id="pat-name">
+                        </div>
+                    </fieldset>
                     <div class="mb-3">
-                      <label for="patient" class="form-label">Patient</label>
-                    <input type="text" class="form-control" id="lname">
-                  </div>
+                        <label for="encounter" class="form-label">Encounter</label>
+                        <input type="text" class="form-control" id="encounter">
+                    </div>
                     <div class="mb-3">
-                      <label for="encounter" class="form-label">Encounter</label>
-                    <input type="text" class="form-control" id="lname">
-                  </div>
-                    <div class="mb-3">
-                      <label for="comment" class="form-label">Comment</label>
-                    <input type="text" class="form-control" id="lname">
-                  </div>
-                  <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px">Order</button>
+                        <label for="comment" class="form-label">Comment</label>
+                        <input type="text" class="form-control" id="comment">
+                    </div>
                 </form>
+                <button class="btn btn-primary" style="width: 100%; margin-top: 10px" onclick="sendOrder()">Order</button>
             </div>
         </div>
         <div id="workflow-page" class="offset-2 col-5" style="margin-top: 50px; display: none">
             <h1 style="text-align: center;">Workflow</h1>
-            <p style="text-align: center; font-size: 20px; margin-top: 20px"> Please choose the workflow in the table below</p>
+            <p style="text-align: center; font-size: 20px; margin-top: 20px"> Please choose the workflow in the table
+                below</p>
             <table class="table table-hover table-bordered workflow-table" style="margin-top: 50px">
-              <thead>
+                <thead>
                 <tr>
-                  <th scope="col" class="workflow-table-width-control">#</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Version</th>
-                  <th scope="col">Description</th>
-                  <th scope="col">URL</th>
+                    <th scope="col" class="workflow-table-width-control">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Version</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">URL</th>
                 </tr>
-              </thead>
-              <tbody>
+                </thead>
+                <tbody>
                 <tr>
-                  <th scope="row"><input class="form-check-input" type="radio" name="wf1" id="wf1"></th>
-                  <td>Chest X-Ray</td>
-                  <td>1</td>
-                  <td>Description</td>
-                  <td>URL1</td>
-                </tr>
-                <tr>
-                  <th scope="row"><input class="form-check-input" type="radio" name="wf1" id="wf1"></th>
-                  <td>HIST</td>
-                  <td>1</td>
-                  <td>Description</td>
-                  <td>URL1</td>
+                    <th scope="row"><label for="wf-1"></label><input class="form-check-input" type="radio" name="wf"
+                                                                     id="wf-1" onclick="choose(this);"></th>
+                    <td>Chest X-Ray</td>
+                    <td>1</td>
+                    <td>Description</td>
+                    <td>URL1</td>
                 </tr>
                 <tr>
-                  <th scope="row"><input class="form-check-input" type="radio" name="wf1" id="wf1"></th>
-                  <td>X-Ray 1</td>
-                  <td>1</td>
-                  <td>Description</td>
-                  <td>URL1</td>
+                    <th scope="row"><label for="wf-2"></label><input class="form-check-input" type="radio" name="wf"
+                                                                     id="wf-2" onclick="choose(this);"></th>
+                    <td>HIST</td>
+                    <td>1</td>
+                    <td>Description</td>
+                    <td>URL1</td>
                 </tr>
                 <tr>
-                  <th scope="row"><input class="form-check-input" type="radio" name="wf1" id="wf1"></th>
-                  <td>X-Ray 2</td>
-                  <td>1</td>
-                  <td>Description</td>
-                  <td>URL1</td>
+                    <th scope="row"><label for="wf-3"></label><input class="form-check-input" type="radio" name="wf"
+                                                                     id="wf-3" onclick="choose(this);"></th>
+                    <td>X-Ray 1</td>
+                    <td>1</td>
+                    <td>Description</td>
+                    <td>URL1</td>
                 </tr>
                 <tr>
-                  <th scope="row"><input class="form-check-input" type="radio" name="wf1" id="wf1"></th>
-                  <td>X-Ray 3</td>
-                  <td>1</td>
-                  <td>Description</td>
-                  <td>URL1</td>
+                    <th scope="row">
+                        <label for="wf-4"></label>
+                        <input class="form-check-input" type="radio" name="wf" id="wf-4" onclick="choose(this);">
+                    </th>
+                    <td>X-Ray 2</td>
+                    <td>1</td>
+                    <td>Description</td>
+                    <td>URL1</td>
                 </tr>
-              </tbody>
+                <tr>
+                    <th scope="row"><label for="wf-5"></label><input class="form-check-input" type="radio" name="wf"
+                                                                     id="wf-5" onclick="choose(this);"></th>
+                    <td>X-Ray 3</td>
+                    <td>1</td>
+                    <td>Description</td>
+                    <td>URL1</td>
+                </tr>
+                </tbody>
             </table>
-            <button type="button" class="btn btn-primary" style="width: 100%; margin-top: 10px">Submit</button>
+            <button type="button" class="btn btn-primary" style="width: 100%; margin-top: 10px"
+                    onclick="confirmWorkflow()">Confirm
+            </button>
+        </div>
+        <div id="practitioner-page" class="offset-2 col-6" style="margin-top: 50px; display: none">
+            <form action="">
+                <div class="mb-3">
+                    <label for="lname" class="form-label">First name</label>
+                    <input type="text" id="practitioner-firstname" class="form-control" placeholder="Practitioner's first name">
+                </div>
+                <div class="mb-3">
+                    <label for="fname" class="form-label">Last name</label>
+                    <input type="text" id="practitioner-lastname" class="form-control" placeholder="Practitioner's last name">
+                </div>
+            </form>
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px"
+                    onclick="confirmPractitioner()">Confirm
+            </button>
+        </div>
+        <div id="patient-page" class="offset-2 col-6" style="margin-top: 50px; display: none">
+            <form action="">
+                <div class="mb-3">
+                    <label for="lname" class="form-label">First name</label>
+                    <input type="text" id="patient-firstname" class="form-control" placeholder="Patient's first name">
+                </div>
+                <div class="mb-3">
+                    <label for="fname" class="form-label">Last name</label>
+                    <input type="text" id="patient-lastname" class="form-control" placeholder="Patient's last name">
+                </div>
+            </form>
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px"
+                    onclick="confirmPatient()">Confirm
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="workflow-selection" tabindex="-1" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="name-empty" tabindex="-1" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+{% csrf_token %}
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
         crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script>
+
+    $(document).ready(function () {
+        $("input[name='wf']").each(function (i, obj) {  // first pass, create name mapping
+            $(obj).prop('checked', false)
+        });
+    });
+
+    let workflow = '';
+
+    function choose(ele) {
+        workflow = $(ele).attr("id");
+    }
+
+    $.ajaxSetup({
+         beforeSend: function(xhr, settings) {
+             function getCookie(name) {
+                 var cookieValue = null;
+                 if (document.cookie && document.cookie != '') {
+                     var cookies = document.cookie.split(';');
+                     for (var i = 0; i < cookies.length; i++) {
+                         var cookie = jQuery.trim(cookies[i]);
+                         // Does this cookie string begin with the name we want?
+                         if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                             cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                             break;
+                         }
+                     }
+                 }
+                 return cookieValue;
+             }
+             if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                 // Only send the token to relative URLs i.e. locally.
+                 xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+             }
+         }
+    });
+
+    function sendOrder() {
+        // 取到文件数据
+        // 发Ajax
+        let mydata = {
+            wk_name:  $("#wk-name").val(),
+            pat_name: $("#pat-name").val(),
+            par_name: $("#par-name").val(),
+            encounter: $("#encounter").val(),
+            comment: $("#comment").val(),
+        }
+        $.ajax({
+            url: '/sendOrder/',
+            type: 'POST',
+            processData: false, // 告诉jQuery不要处理上传的数据
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(mydata),
+            success: function (res) {
+                console.log(res);
+            }
+        })
+    }
+
+    function confirmWorkflow() {
+        if (workflow === '') {
+            $("#workflow-selection").modal('show')
+            return;
+        }
+        $("#wk-name").val(workflow)
+        $("#home").trigger('click')
+    }
+
+    function confirmPatient() {
+        let pl = $("#patient-lastname").val()
+        let pf = $("#patient-firstname").val()
+        if (pl === '' || pf === '') {
+            $("#name-empty").modal('show')
+            return;
+        }
+        $("#pat-name").val(pf + " " + pl)
+        $("#home").trigger('click')
+    }
+
+    function confirmPractitioner() {
+        let pl = $("#practitioner-lastname").val()
+        let pf = $("#practitioner-firstname").val()
+        if (pl === '' || pf === '') {
+            $("#name-empty").modal('show')
+            return;
+        }
+        $("#par-name").val(pf + " " + pl)
+        $("#home").trigger('click')
+    }
+
     function setTime() {
         let currentPage = '#home-page'
         $("#home").click(function () {
@@ -146,15 +318,27 @@
             }
         })
         $("#workflow").click(function () {
-            console.log(12)
             if (currentPage !== '#workflow-page') {
                 $("#workflow-page")[0].style.display = 'block';
                 $(currentPage)[0].style.display = 'none';
                 currentPage = '#workflow-page'
             }
         })
+        $("#practitioner").click(function () {
+            if (currentPage !== '#practitioner-page') {
+                $("#practitioner-page")[0].style.display = 'block';
+                $(currentPage)[0].style.display = 'none';
+                currentPage = '#practitioner-page'
+            }
+        })
+        $("#patient").click(function () {
+            if (currentPage !== '#patient-page') {
+                $("#patient-page")[0].style.display = 'block';
+                $(currentPage)[0].style.display = 'none';
+                currentPage = '#patient-page'
+            }
+        })
     }
-
     setTime();
 </script>
 </body>

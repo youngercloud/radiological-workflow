@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/report.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous">
+    <script>
+        function showModel() {
+            $("#addDomainModal").load("/addItem", function () {
+                $("#addDomainModal").modal('show');
+            })
+        }
+    </script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light margin-spaces navbar-style">
+    <a class="navbar-brand" href="/home/">Home</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item navbar-style-item">
+                <a class="nav-link active" aria-current="page" href="/order/">Orders</a>
+            </li>
+            <li class="nav-item navbar-style-item">
+                <a class="nav-link" href="/booking/">Booking</a>
+            </li>
+            <li class="nav-item navbar-style-item">
+                <a class="nav-link" href="/checkin/">Checkin</a>
+            </li>
+            <li class="nav-item navbar-style-item">
+                <a class="nav-link navbar-style-item" href="/report/">Reporting</a>
+            </li>
+        </ul>
+    </div>
+    <div class="main-avatar d-flex align-items-center justify-content-center">
+        <img src="https://images.pexels.com/photos/8836497/pexels-photo-8836497.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+             alt="avatar">
+    </div>
+</nav>
+</body>
+<div class="container">
+    <div class="row">
+        <div class="col-5" style="margin-top: 10px">
+            <h5 class="margin-spaces">Report Search</h5>
+            <form class="report-filter">
+              <div class="mb-3">
+                  <label for="practitioner" class="form-label">Practitioner</label>
+                <input type="text" class="form-control" id="lname">
+              </div>
+                <div class="mb-3">
+                  <label for="patient" class="form-label">Patient</label>
+                    <input type="text" class="form-control" id="lname">
+                </div>
+                <div class="mb-3">
+                <label for="date" class="form-label">Date</label>
+                <input type="date" class="form-control" id="fname">
+              </div>
+            </form>
+             <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px">Search</button>
+        </div>
+        <div class="col-5" style="margin-left: 100px">
+            <h5 class="margin-spaces">Report</h5>
+            <div class="patient-info">
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Andrew Martin
+                        <button id="res-1" class="btn btn-primary btn-sm" onclick="showModel()">Result</button>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Garry Griffith
+                        <button id="res-2" class="btn btn-primary btn-sm" onclick="showModel()">Result</button>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Hester Booth
+                        <button id="res-3" class="btn btn-primary btn-sm" onclick="showModel()">Result</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="addDomainModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+</html>

@@ -1,0 +1,59 @@
+html,
+body {
+  min-height: 100vh;
+}
+.navbar-style {
+  background: #406ba8;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+.navbar-style a {
+  color: #ffffff !important;
+  text-decoration: none;
+  letter-spacing: 1px;
+  position: relative;
+}
+.navbar-style a:after {
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: #fff;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+.navbar-style a:hover:after {
+  width: 100%;
+  left: 0;
+}
+.main-avatar img {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+}
+.margin-spaces {
+  margin-bottom: 20px;
+}
+.margin-spaces-orders {
+  margin-bottom: 40px;
+}
+.margin-spaces-persons {
+  margin-bottom: 5px;
+}
+.timetable {
+  table-layout: fixed;
+}
+.timetable td {
+  height: 60px;
+  overflow: hidden;
+  word-wrap: break-word;
+}
+.booking-person {
+  width: 100%;
+  text-align: center;
+  background: #aaa;
+  border-radius: 5%;
+}
+/*# sourceMappingURL=checkIn.css.map */

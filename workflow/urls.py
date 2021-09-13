@@ -22,5 +22,9 @@ urlpatterns = [
     path('/', app_views.index),
     path('home/', app_views.index),
     path('order/', app_views.order),
-    path('booking/', app_views.booking)
+    path('checkin/', app_views.checkin),
+    path('report/', app_views.report),
+    path('booking/', app_views.booking),
+
+    path('sendOrder/', app_views.OrderView.as_view()),
 ]

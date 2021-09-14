@@ -25,6 +25,6 @@ urlpatterns = [
     path('checkin/', app_views.checkin),
     path('report/', app_views.report),
     path('booking/', app_views.booking),
-
     path('sendOrder/', app_views.OrderView.as_view()),
+    path('sendBooking/', app_views.BookingView.as_view()),
 ]

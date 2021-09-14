@@ -52,9 +52,9 @@ if __name__ == "__main__":
     ap = AppointmentParticipant()
 
     a.participant = ap
-    # tt = fserv.FHIRServer(client=None, base_uri="http://localhost:8080/fhir")
-    # tt.prepare()
-    #
+    tt = fserv.FHIRServer(client=None, base_uri="http://localhost:8080/fhir")
+    tt.prepare()
+
     pat = Patient()
     hn = HumanName()
 
@@ -78,24 +78,24 @@ if __name__ == "__main__":
     temp.postalCode = "4069"
     temp.country = "Australia"
     pat.address = [temp]
-
-    ap.actor = [pat, create_par("Ha Ha")]
-    a.comment = ""
-    a.description = ""
-
-    device = Device()
-    dn = DeviceDeviceName()
-    dn.name = "Siemens X.pree X-Ray"
-    device.deviceName = dn
-    device.url = "https://example.com"
-    device.version = '1'
+    pat.create(tt)
 
 
-    d = DeviceRequest()
-    d.basedOn = "Chest-X-Ray"
-    d.codeReference = device
-    a.basedOn = d
-    print(a)
+
+    #
+    # device = Device()
+    # dn = DeviceDeviceName()
+    # dn.name = "Siemens X.pree X-Ray"
+    # device.deviceName = dn
+    # device.url = "https://example.com"
+    # device.version = '1'
+    #
+    #
+    # d = DeviceRequest()
+    # d.basedOn = "Chest-X-Ray"
+    # d.codeReference = device
+    # a.basedOn = d
+    # print(a)
 
 
 

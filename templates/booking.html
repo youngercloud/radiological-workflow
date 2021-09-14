@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    {% load static %}
     <link rel="stylesheet" href="/static/booking.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
           rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
@@ -53,30 +54,16 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="clickableRow">
-                        <td class="col-xs-3">John</td>
-                        <td class="col-xs-3">43</td>
-                        <td class="col-xs-6">School Teacher</td>
-                        <td class="col-xs-6">$43,000</td>
-                        <td class="col-xs-6">$43,000</td>
-                        <td class="col-xs-6">$43,000</td>
-                    </tr>
-                    <tr class="clickableRow">
-                        <td class="col-xs-3">Tim</td>
-                        <td class="col-xs-3">52</td>
-                        <td class="col-xs-6">Plumber</td>
-                        <td class="col-xs-6">$55,000</td>
-                        <td class="col-xs-6">$55,000</td>
-                        <td class="col-xs-6">$55,000</td>
-                    </tr>
-                    <tr class="clickableRow">
-                        <td class="col-xs-3">John</td>
-                        <td class="col-xs-3">43</td>
-                        <td class="col-xs-6">School Teacher</td>
-                        <td class="col-xs-6">$43,000</td>
-                        <td class="col-xs-6">$43,000</td>
-                        <td class="col-xs-6">$43,000</td>
-                    </tr>
+                    {% for r in rows %}
+                        <tr class="clickableRow">
+                            <td class="col-xs-3">{{ r.id }}</td>
+                            <td class="col-xs-3">{{ r.status }}</td>
+                            <td class="col-xs-6">{{ r.pName }}</td>
+                            <td class="col-xs-6">{{ r.wName }}</td>
+                            <td class="col-xs-6">{{ r.wVersion }}</td>
+                            <td class="col-xs-6">{{ r.wprName }}</td>
+                        </tr>
+                    {% endfor %}
                     </tbody>
                 </table>
             </div>
@@ -85,14 +72,14 @@
                     <thead>
                     <tr>
                         <th class="col-xs-6">Scanner</th>
-                        <th class="col-xs-3">9 A.M. </th>
-                        <th class="col-xs-3">10 A.M. </th>
-                        <th class="col-xs-3">11 A.M. </th>
-                        <th class="col-xs-3">12 P.M. </th>
-                        <th class="col-xs-3">13 P.M. </th>
-                        <th class="col-xs-3">14 P.M. </th>
-                        <th class="col-xs-3">15 P.M. </th>
-                        <th class="col-xs-3">16 P.M. </th>
+                        <th class="col-xs-3">9 A.M.</th>
+                        <th class="col-xs-3">10 A.M.</th>
+                        <th class="col-xs-3">11 A.M.</th>
+                        <th class="col-xs-3">12 P.M.</th>
+                        <th class="col-xs-3">13 P.M.</th>
+                        <th class="col-xs-3">14 P.M.</th>
+                        <th class="col-xs-3">15 P.M.</th>
+                        <th class="col-xs-3">16 P.M.</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -113,55 +100,135 @@
             <form>
                 <fieldset disabled>
                     <div class="mb-3">
-                        <label for="TaskID" class="form-label">Task ID</label>
-                        <input type="text" id="taskId-disable" class="form-control" placeholder="Disabled input">
+                        <label for="PatientID" class="form-label">Patient ID</label>
+                        <input type="text" id="patientId-disable" class="form-control" placeholder="Select Patient">
                     </div>
                     <div class="mb-3">
                         <label for="patient" class="form-label">Patient Name</label>
-                        <input type="text" id="patient-name" class="form-control" placeholder="Disabled input">
+                        <input type="text" id="patient-name" class="form-control" placeholder="Select Patient">
                     </div>
                     <div class="mb-3">
                         <label for="patient" class="form-label">Workflow</label>
-                        <input type="text" id="workflow-name" class="form-control" placeholder="Disabled input">
+                        <input type="text" id="workflow-name" class="form-control" placeholder="Select Patient">
                     </div>
                     <div class="mb-3">
                         <label for="practitioner" class="form-label">Practitioner</label>
-                        <input type="text" id="practitioner-name" class="form-control" placeholder="Disabled input">
+                        <input type="text" id="practitioner-name" class="form-control" placeholder="Select Patient">
                     </div>
                 </fieldset>
                 <div class="mb-3">
                     <label for="date" class="form-label">Date</label>
-                    <input type="date" id="start" class="form-control" name="booking-date">
+                    <input type="date" id="start-date" class="form-control" name="booking-date">
                 </div>
                 <div class="mb-3">
                     <label for="time" class="form-label">Time</label>
-                    <input type="time" id="start" class="form-control" name="booking-date" min="09:00" max="18:00">
+                    <input type="time" id="start-time" class="form-control" name="booking-date" min="09:00" max="18:00">
                 </div>
                 <div class="mb-3">
                     <label for="start-time" class="form-label">Device</label>
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                    <select id="machine" class="form-select" aria-label="Default select example">
+                        <option value="" selected>Open this select menu</option>
+                        <option value="Siemens X.pree X-Ray">Siemens X.pree X-Ray</option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <button type="submit" class="btn btn-primary">Clear</button>
             </form>
+            <button class="btn btn-primary" id="submit-btn">Submit</button>
+            <button class="btn btn-primary" id="clear-btn">Clear</button>
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="form-lack-info" tabindex="-1" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Please fill all the information
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
         crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-
+<script src="{% static 'ajaxSetup.js' %}"></script>
 <script>
+
+    $(document).ready(function () {
+        $("#clear-btn").trigger("click")
+    });
+
+    let chose;
     $('#booking-table').on('click', 'tbody tr', function (event) {
         $(this).addClass('highlight').siblings().removeClass('highlight');
+        chose = $(this);
+        let col = $("td", this)
+        let pt_id = col[0].innerText;
+        let pt_name = col[2].innerText;
+        let wk = col[3].innerText;
+        let pr_name = col[3].innerText;
+        $("#patientId-disable").val(pt_id)
+        $("#patient-name").val(pt_name)
+        $("#workflow-name").val(wk)
+        $("#practitioner-name").val(pr_name)
     });
+
+    $("#clear-btn").click(function () {
+        if (chose !== undefined) {
+            chose.removeClass('highlight')
+            chose = undefined
+        }
+        $("#patientId-disable").val("")
+        $("#patient-name").val("")
+        $("#workflow-name").val("")
+        $("#practitioner-name").val("")
+        $("#start-date").val("")
+        $("#start-time").val("")
+        $("#machine").val("")
+    })
+
+    $("#submit-btn").click(function () {
+        let date = $("#start-date").val()
+        let time = $("#start-time").val()
+        let op = $("#machine").val()
+        if (chose === undefined || date === ''
+            || time === '' || op === '') {
+            $("#form-lack-info").modal('show')
+            return;
+        }
+
+        let mydata = {
+            patId:  $("#patientId-disable").val(),
+            patName: $("#patient-name").val(),
+            workflowName: $("#workflow-name").val(),
+            praName: $("#practitioner-name").val(),
+            startDate: date,
+            startTime: time,
+            machine: op
+        }
+
+        $.ajax({
+            url: '/sendBooking/',
+            type: 'POST',
+            processData: false,
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(mydata),
+            success: function (res) {
+                console.log(res);
+            }
+        })
+    })
+
 </script>
 </body>

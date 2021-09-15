@@ -27,4 +27,5 @@ urlpatterns = [
     path('sendOrder/', app_views.OrderView.as_view()),
     path('sendBooking/', app_views.BookingView.as_view()),
     path('sendCheckIn/', app_views.CheckInView.as_view()),
+    path('searchDiagnosisReport/', app_views.SearchDiagnosisReport.as_view()),
 ]

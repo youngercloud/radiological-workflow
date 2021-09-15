@@ -1,13 +1,15 @@
 import json
+import uuid
 from datetime import datetime, timedelta
-from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render, redirect
+from django.http import JsonResponse
+from django.shortcuts import render
 from django import views
 from fhirclient import server as fserv
+from fhirclient.models.codeableconcept import CodeableConcept
+from fhirclient.models.coding import Coding
 from fhirclient.models.fhirdate import FHIRDate
 from fhirclient.models.identifier import Identifier
 from fhirclient.models.device import Device, DeviceDeviceName, DeviceVersion
-from fhirclient.models.devicerequest import DeviceRequest
 from fhirclient.models.patient import Patient
 from fhirclient.models.practitioner import Practitioner
 from fhirclient.models.humanname import HumanName
@@ -15,6 +17,7 @@ from fhirclient.models.appointment import Appointment, AppointmentParticipant
 from fhirclient.models.fhirreference import FHIRReference
 from fhirclient.models.servicerequest import ServiceRequest
 from fhirclient.models.annotation import Annotation
+from fhirclient.models.diagnosticreport import DiagnosticReport
 
 # Create your views here.
 
@@ -62,8 +65,6 @@ def order(request):
     return render(request, 'orders.html')
 
 
-
-
 def get_orders():
     res = []
     search = Appointment.where({'status': 'waitlist'})
@@ -103,7 +104,6 @@ def checkin(request):
     procedures = search.perform_resources(tt)
     for procedure in procedures:
         data = procedure.as_json()
-        print(data)
         p_name = Patient.read(data['participant'][0]['actor']['reference'].split('/')[1], tt)
         pat_fn = p_name.as_json()['name'][0]['family']
         pat_gn = p_name.as_json()['name'][0]['given'][0]
@@ -125,7 +125,6 @@ def checkin(request):
                 'time': data['start'].split('T')[1],
                 'minutes': minutes + 60 if hours == 1 else minutes,
             })
-    print(res)
     return render(request, 'checkIn.html', {'pats': res})
 
 
@@ -242,6 +241,29 @@ class BookingView(views.View):
         return JsonResponse({'msg': 'failed'})
 
 
+def gen_report(apt: Appointment):
+    data = apt.as_json()
+    p_name = Patient.read(data['participant'][0]['actor']['reference'].split('/')[1], tt)
+    pat_fn = p_name.as_json()['name'][0]['family']
+    pat_gn = p_name.as_json()['name'][0]['given'][0]
+
+    dr = DiagnosticReport()
+    dr.issued = FHIRDate(str((datetime.utcnow() + timedelta(hours=10)).date()))
+    base_on_ref = FHIRReference()
+    base_on_ref.reference = "ServiceRequest/" + apt.as_json()['basedOn'][0]['reference'].split("/")[1]
+    dr.basedOn = [base_on_ref]
+    dr.conclusion = "Organs are functioning well, no implicit and explicit problems"
+    dr.status = 'final'
+    report_code = CodeableConcept()
+    code = Coding()
+    code.code = str(uuid.uuid4())
+    code.version = '1'
+    report_code.coding = [code]
+    report_code.text = f"{pat_gn} {pat_fn}"
+    dr.code = report_code
+    dr.create(tt)
+
+
 class CheckInView(views.View):
 
     def post(self, request):
@@ -253,7 +275,28 @@ class CheckInView(views.View):
                 for procedure in procedures:
                     p_json = procedure.as_json()
                     if data['id'] == p_json['id']:
-                        procedure.status = 'checked-in'
+                        # procedure.status = 'checked-in' # DICOM IGNORED, Directly 'fulfilled'
+                        procedure.status = 'fulfilled'
                         procedure.update(tt)
+                        gen_report(procedure)
                         return JsonResponse({'msg': 'success'})
         return JsonResponse({'msg': 'failed'})
+
+
+class SearchDiagnosisReport(views.View):
+
+    def post(self, request):
+        res = []
+        if request.is_ajax():
+            if request.method == 'POST':
+                data = json.loads(request.body)
+                condition = {}
+                if data['date'] != '':
+                    condition['issued'] = data['date']
+                else:
+                    condition['issued'] = str((datetime.utcnow() + timedelta(hours=10)).date())
+                search = DiagnosticReport.where(condition)
+                procedures = search.perform_resources(tt)
+                for procedure in procedures:
+                    res.append(procedure.as_json())
+        return JsonResponse({'msg': 'success', 'report': res})

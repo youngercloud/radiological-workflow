@@ -52,23 +52,8 @@ def days_hours_minutes(td):
     return td.days, td.seconds//3600, (td.seconds//60)%60
 
 if __name__ == "__main__":
-    from datetime import datetime, timedelta
-
-    s = '2021-09-15T10:47:00'
-    bk_time = datetime.fromisoformat(s)
-    print(datetime.utcnow() + timedelta(hours=10))
-    diff = bk_time - datetime.now()
-    days, hours, mins = days_hours_minutes(diff)
-    print(hours)
-
-
-    # a = Appointment()
-    # ap = AppointmentParticipant()
-    #
-    # a.participant = ap
-    # tt = fserv.FHIRServer(client=None, base_uri="http://localhost:8080/fhir")
-    # tt.prepare()
-    #
+    import uuid
+    print()
     # pat = Patient()
     # hn = HumanName()
     #
@@ -110,6 +95,5 @@ if __name__ == "__main__":
     # d.codeReference = device
     # a.basedOn = d
     # print(a)
-
-
-
+    # p = Patient.read('16', tt)
+    # print(p.as_json())

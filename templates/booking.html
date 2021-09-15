@@ -100,7 +100,7 @@
             <form>
                 <fieldset disabled>
                     <div class="mb-3">
-                        <label for="PatientID" class="form-label">Patient ID</label>
+                        <label for="PatientID" class="form-label">Task ID</label>
                         <input type="text" id="patientId-disable" class="form-control" placeholder="Select Patient">
                     </div>
                     <div class="mb-3">
@@ -225,7 +225,9 @@
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(mydata),
             success: function (res) {
-                console.log(res);
+                if (res.msg === "success") {
+                    window.location.href = '/checkin/';
+                }
             }
         })
     })

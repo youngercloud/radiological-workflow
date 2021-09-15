@@ -43,18 +43,12 @@
             <h5 class="margin-spaces">Patient Queue</h5>
             <div class="patient-info">
                 <ul class="list-group">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Andrew Martin
-                        <span class="badge bg-primary rounded-pill">5 minutes</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Garry Griffith
-                        <span class="badge bg-primary rounded-pill">12 minutes</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Hester Booth
-                        <span class="badge bg-primary rounded-pill">17 minutes</span>
-                    </li>
+                    {% for p in pats %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {{ p.pName }}
+                            <span class="badge bg-primary rounded-pill">{{ p.minutes }} minutes</span>
+                        </li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>

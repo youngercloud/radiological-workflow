@@ -56,4 +56,10 @@ body {
   background: #aaa;
   border-radius: 5%;
 }
+#patient-info-list li:hover {
+  cursor: pointer;
+}
+#patient-info-list li.highlight {
+  background-color: #ddd;
+}
 /*# sourceMappingURL=checkIn.css.map */

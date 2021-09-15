@@ -1,5 +1,5 @@
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django import views
@@ -34,12 +34,34 @@ device.version = [dv]
 device_json = device.create(tt)
 
 
+def days_hours_minutes(td):
+    return td.days, td.seconds // 3600, (td.seconds // 60) % 60
+
+
 def index(request):
-    return render(request, 'index.html')
+    res = []
+    search = Appointment.where({'status': 'booked'})
+    procedures = search.perform_resources(tt)
+    for procedure in procedures:
+        data = procedure.as_json()
+        p_name = Patient.read(data['participant'][0]['actor']['reference'].split('/')[1], tt)
+        pat_fn = p_name.as_json()['name'][0]['family']
+        pat_gn = p_name.as_json()['name'][0]['given'][0]
+        bk_time = datetime.fromisoformat(data['start'])
+        diff = bk_time - (datetime.utcnow() + timedelta(hours=10))
+        days, hours, minutes = days_hours_minutes(diff)
+        if days == 0 and hours < 2:
+            res.append({
+                'pName': pat_fn + " " + pat_gn,
+                'minutes': minutes + 60 if hours == 1 else minutes,
+            })
+    return render(request, 'index.html', {'pats': res})
 
 
 def order(request):
     return render(request, 'orders.html')
+
+
 
 
 def get_orders():
@@ -76,7 +98,35 @@ def booking(request):
 
 
 def checkin(request):
-    return render(request, 'checkIn.html')
+    res = []
+    search = Appointment.where({'status': 'booked'})
+    procedures = search.perform_resources(tt)
+    for procedure in procedures:
+        data = procedure.as_json()
+        print(data)
+        p_name = Patient.read(data['participant'][0]['actor']['reference'].split('/')[1], tt)
+        pat_fn = p_name.as_json()['name'][0]['family']
+        pat_gn = p_name.as_json()['name'][0]['given'][0]
+        pr_name = Practitioner.read(data['participant'][1]['actor']['reference'].split('/')[1], tt)
+        par_fn = pr_name.as_json()['name'][0]['family']
+        par_gn = pr_name.as_json()['name'][0]['given'][0]
+        bk_time = datetime.fromisoformat(data['start'])
+        wk_flow = ServiceRequest.read(data['basedOn'][0]['reference'].split('/')[1], tt)
+        wk_flow_name = wk_flow.as_json()['note'][0]['text']
+        diff = bk_time - (datetime.utcnow() + timedelta(hours=10))
+        days, hours, minutes = days_hours_minutes(diff)
+        if days == 0 and hours < 2:
+            res.append({
+                'id': data['id'],
+                'pName': pat_fn + " " + pat_gn,
+                'wName': wk_flow_name,
+                'wprName': par_gn + " " + par_fn,
+                'date': data['start'].split('T')[0],
+                'time': data['start'].split('T')[1],
+                'minutes': minutes + 60 if hours == 1 else minutes,
+            })
+    print(res)
+    return render(request, 'checkIn.html', {'pats': res})
 
 
 def report(request):
@@ -187,6 +237,23 @@ class BookingView(views.View):
                             procedure.comment = f" Booked scan at {str(t)}, use scanner {data['machine']}"
                         else:
                             procedure.comment += f"Booked scan at {str(t)}, use scanner {data['machine']}"
+                        procedure.update(tt)
+                        return JsonResponse({'msg': 'success'})
+        return JsonResponse({'msg': 'failed'})
+
+
+class CheckInView(views.View):
+
+    def post(self, request):
+        if request.is_ajax():
+            if request.method == 'POST':
+                data = json.loads(request.body)
+                search = Appointment.where({'status': 'booked'})
+                procedures = search.perform_resources(tt)
+                for procedure in procedures:
+                    p_json = procedure.as_json()
+                    if data['id'] == p_json['id']:
+                        procedure.status = 'checked-in'
                         procedure.update(tt)
                         return JsonResponse({'msg': 'success'})
         return JsonResponse({'msg': 'failed'})

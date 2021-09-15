@@ -47,38 +47,52 @@ def create_par(par_name):
     par.name = [hn]
     return par
 
+
+def days_hours_minutes(td):
+    return td.days, td.seconds//3600, (td.seconds//60)%60
+
 if __name__ == "__main__":
-    a = Appointment()
-    ap = AppointmentParticipant()
+    from datetime import datetime, timedelta
 
-    a.participant = ap
-    tt = fserv.FHIRServer(client=None, base_uri="http://localhost:8080/fhir")
-    tt.prepare()
+    s = '2021-09-15T10:47:00'
+    bk_time = datetime.fromisoformat(s)
+    print(datetime.utcnow() + timedelta(hours=10))
+    diff = bk_time - datetime.now()
+    days, hours, mins = days_hours_minutes(diff)
+    print(hours)
 
-    pat = Patient()
-    hn = HumanName()
 
-    ident = Identifier()
-    ident.use = "official"
-    ident.system = "http://ns.health.qld.gov.au/id/URN"
-    ident.value = "LC12123733"
-    pat.identifier = [ident]
-    hn.family = "Sanchez"
-    hn.given = ["Rick"]
-    pat.name = [hn]
-    pat.gender = "male"
-    pat.birthDate = FHIRDate('1948-07-03')
-    temp = Address()
-
-    temp.use = "home"
-    temp.type = "both"
-    temp.text = "42 Botticelli St, Fig Tree Pocket, QLD, 4069"
-    temp.city = "Fig Tree Pocket"
-    temp.state = "QLD"
-    temp.postalCode = "4069"
-    temp.country = "Australia"
-    pat.address = [temp]
-    pat.create(tt)
+    # a = Appointment()
+    # ap = AppointmentParticipant()
+    #
+    # a.participant = ap
+    # tt = fserv.FHIRServer(client=None, base_uri="http://localhost:8080/fhir")
+    # tt.prepare()
+    #
+    # pat = Patient()
+    # hn = HumanName()
+    #
+    # ident = Identifier()
+    # ident.use = "official"
+    # ident.system = "http://ns.health.qld.gov.au/id/URN"
+    # ident.value = "LC12123733"
+    # pat.identifier = [ident]
+    # hn.family = "Sanchez"
+    # hn.given = ["Rick"]
+    # pat.name = [hn]
+    # pat.gender = "male"
+    # pat.birthDate = FHIRDate('1948-07-03')
+    # temp = Address()
+    #
+    # temp.use = "home"
+    # temp.type = "both"
+    # temp.text = "42 Botticelli St, Fig Tree Pocket, QLD, 4069"
+    # temp.city = "Fig Tree Pocket"
+    # temp.state = "QLD"
+    # temp.postalCode = "4069"
+    # temp.country = "Australia"
+    # pat.address = [temp]
+    # pat.create(tt)
 
 
 

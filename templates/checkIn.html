@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    {% load static %}
     <link rel="stylesheet" href="/static/checkIn.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
           rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
@@ -42,28 +43,22 @@
         <div class="col-5">
             <h5 class="margin-spaces">Patient Queue</h5>
             <div class="patient-info">
-                <ul class="list-group">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Andrew Martin
-                        <div>
-                             <span class="badge bg-primary rounded-pill" style="margin-right: 10px">5 minutes</span>
-                            <button class="btn btn-primary btn-sm">Check In</button>
-                        </div>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Garry Griffith
-                        <div>
-                             <span class="badge bg-primary rounded-pill" style="margin-right: 10px">5 minutes</span>
-                            <button class="btn btn-primary btn-sm">Check In</button>
-                        </div>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Hester Booth
-                        <div>
-                             <span class="badge bg-primary rounded-pill" style="margin-right: 10px">5 minutes</span>
-                            <button class="btn btn-primary btn-sm">Check In</button>
-                        </div>
-                    </li>
+                <ul class="list-group" id="patient-info-list">
+                    {% for p in pats %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {{ p.pName }}
+                            <div>
+                                <span class="badge bg-primary rounded-pill"
+                                      style="margin-right: 10px">{{ p.minutes }} minutes</span>
+                                <span style="display: none" id="booked-id">{{ p.id }}</span>
+                                <span style="display: none" id="booked-workflow-name">{{ p.wName }}</span>
+                                <span style="display: none" id="booked-wpr">{{ p.wprName }}</span>
+                                <span style="display: none" id="booked-time">{{ p.pName }}</span>
+                                <span style="display: none" id="booked-date">{{ p.date }}</span>
+                                <span style="display: none" id="booked-time">{{ p.time }}</span>
+                            </div>
+                        </li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>
@@ -72,7 +67,7 @@
                 <fieldset disabled>
                     <div class="mb-3">
                         <label for="TaskID" class="form-label">Task ID</label>
-                        <input type="text" id="taskId-disable" class="form-control" placeholder="Disabled input">
+                        <input type="text" id="taskId" class="form-control" placeholder="Disabled input">
                     </div>
                     <div class="mb-3">
                         <label for="patient" class="form-label">Patient Name</label>
@@ -88,18 +83,16 @@
                     </div>
                     <div class="mb-3">
                         <label for="date" class="form-label">Date</label>
-                        <input type="date" id="start" class="form-control" name="booking-date">
+                        <input type="date" id="start-date" class="form-control" name="booking-date">
                     </div>
                     <div class="mb-3">
                         <label for="start-time" class="form-label">Time</label>
-                        <input type="time" id="start" class="form-control" name="booking-date" min="09:00" max="18:00">
-                    </div>
-                     <div class="mb-3">
-                        <label for="device" class="form-label">Time</label>
-                        <input type="time" id="start" class="form-control" name="booking-date" min="09:00" max="18:00">
+                        <input type="time" id="start-time" class="form-control" name="booking-date" min="09:00"
+                               max="18:00">
                     </div>
                 </fieldset>
             </form>
+            <button class="btn btn-primary btn-sm" id="checkIn-btn" style="width: 100%; margin-top: 10px">Check In</button>
         </div>
     </div>
 </div>
@@ -108,6 +101,39 @@
         integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
         crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"
-        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous">
+</script>
+<script src="{% static 'ajaxSetup.js' %}"></script>
+<script>
+    $("#patient-info-list").on('click', 'li', function (event) {
+        $(this).addClass('highlight').siblings().removeClass('highlight');
+        let info = $(this).children().children();
+        $("#taskId").val(info.eq(1)[0].innerText);
+        $("#workflow-name").val(info.eq(2)[0].innerText);
+        $("#practitioner-name").val(info.eq(3)[0].innerText);
+        $("#patient-name").val(info.eq(4)[0].innerText);
+        $("#start-date").val(info.eq(5)[0].innerText)
+        $("#start-time").val(info.eq(6)[0].innerText)
+    })
+
+    $("#checkIn-btn").on('click', function () {
+        let mydata = {
+            id: $("#taskId").val()
+        }
+        $.ajax({
+            url: '/sendCheckIn/',
+            type: 'POST',
+            processData: false,
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(mydata),
+            success: function (res) {
+                if (res.msg === "success") {
+                    window.location.href = '/report/';
+                }
+            }
+        })
+    })
+</script>
+
 </body>
 </html>

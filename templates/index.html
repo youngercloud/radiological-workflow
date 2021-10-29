@@ -142,18 +142,29 @@
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script>
     function setTime() {
-        let startTime = new Date('2021-08-30T16:00:00');
-        let name = "Darren Yu"
-        if (startTime.getHours() < 9 && startTime.getHours() >= 17) return
-        let row = startTime.getHours() - 8; // 11 - 8 = 3
-        let col = startTime.getDay() - 1;
+        let obj = {
+            "Roy Swan": '2021-10-24T16:00:00',
+            "Marlon James": '2021-10-29T12:00:00',
+            "Darren Yu": '2021-10-27T10:00:00'
+        }
+        for (var k in obj) {
+            if (obj.hasOwnProperty(k)) {
+                let date = new Date(obj[k])
+                if (date.getHours() < 9 && date.getHours() >= 17) continue
+                let row = date.getHours() - 8; // 11 - 8 = 3
+                let col = date.getDay() - 1;
+                if (col === -1 && col === 5) return;
+                let sample = `<div class='booking-person margin-spaces-persons'>${k}</div>`
+                $(".table-style tr:eq(" + row + ") td:eq(" + col + ")").
+                append(sample)
+            }
+        }
 
-        if (col === -1 && col === 5) return;
-        $(".table-style tr:eq(" + row + ") td:eq(" + col + ")").append('<div class="booking-person margin-spaces-persons">21</div>')
-        $(".table-style tr:eq(" + row + ") td:eq(" + col + ")").append('<div class="booking-person margin-spaces-persons">22</div>')
-        $(".table-style tr:eq(" + row + ") td:eq(" + col + ")").append('<div class="booking-person margin-spaces-persons">23</div>')
-        $(".table-style tr:eq(" + row + ") td:eq(" + col + ")").append('<div class="booking-person margin-spaces-persons">24</div>')
-        $(".table-style tr:eq(" + row + ") td:eq(" + col + ")").append('<div class="booking-person margin-spaces-persons">25</div>')
+
+
+
+
+
 
     }
 

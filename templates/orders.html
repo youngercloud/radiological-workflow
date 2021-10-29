@@ -42,13 +42,13 @@
     <div class="row">
         <div class="col-3 order-left-bg">
             <div style="margin-top: 50px" class="list-group" id="list-tab" role="tablist">
-                <a class="order-list-item active" id="home" data-bs-toggle="list" href="#home-page">Overview</a>
+                <a class="order-list-item" id="patient" data-bs-toggle="list" href="#patient-page">Patient</a>
                 <a class="order-list-item active" id="workflow" data-bs-toggle="list" href="#workflow-page">Workflow</a>
                 <a class="order-list-item" id="practitioner" data-bs-toggle="list" href="#practitioner-page">Practitioner</a>
-                <a class="order-list-item" id="patient" data-bs-toggle="list" href="#patient-page">Patient</a>
+                <a class="order-list-item active" id="home" data-bs-toggle="list" href="#home-page">Overview</a>
             </div>
         </div>
-        <div id="home-page" class="offset-2 col-5" style="margin-top: 50px; display: block">
+        <div id="home-page" class="offset-2 col-5" style="margin-top: 50px; display: none">
             <h1 style="text-align: center;">Order Workflow</h1>
             <div class="form">
                 <form>
@@ -124,6 +124,7 @@
             </button>
         </div>
         <div id="practitioner-page" class="offset-2 col-6" style="margin-top: 50px; display: none">
+            <h1 style="text-align: center;">Practitioner</h1>
             <form action="">
                 <div class="mb-3">
                     <label for="lname" class="form-label">First name</label>
@@ -138,7 +139,8 @@
                     onclick="confirmPractitioner()">Confirm
             </button>
         </div>
-        <div id="patient-page" class="offset-2 col-6" style="margin-top: 50px; display: none">
+        <div id="patient-page" class="offset-2 col-6" style="margin-top: 50px; display: block">
+            <h1 style="text-align: center;">Patient</h1>
             <form action="">
                 <div class="mb-3">
                     <label for="lname" class="form-label">First name</label>
@@ -243,7 +245,7 @@
             return;
         }
         $("#wk-name").val(workflow)
-        $("#home").trigger('click')
+        $("#practitioner").trigger('click')
     }
 
     function confirmPatient() {
@@ -254,7 +256,7 @@
             return;
         }
         $("#pat-name").val(pf + " " + pl)
-        $("#home").trigger('click')
+        $("#workflow").trigger('click')
     }
 
     function confirmPractitioner() {
